@@ -1,8 +1,8 @@
-CREATE SCHEMA std; -- creating schema in Greenplum
+CREATE SCHEMA std6_116; -- creating schema in Greenplum
 
 
 -- creating dimension tables
-CREATE TABLE std.stores (
+CREATE TABLE std6_116.stores (
 	plant bpchar(4),
 	txt text
 )
@@ -10,7 +10,7 @@ DISTRIBUTED REPLICATED;
 
 
 
-CREATE TABLE std.promos (
+CREATE TABLE std6_116.promos (
 	promo_id varchar,
 	promo_name varchar,
 	promo_type int4,
@@ -21,7 +21,7 @@ DISTRIBUTED REPLICATED;
 
 
 
-CREATE TABLE std.promo_types (
+CREATE TABLE std6_116.promo_types (
 	promo_type int4,
 	txt text
 )
@@ -30,7 +30,7 @@ DISTRIBUTED REPLICATED;
 
 
 -- creating fact tables
-CREATE TABLE std.traffic (
+CREATE TABLE std6_116.traffic (
 	plant bpchar(4),
 	date date,
 	time bpchar(6),
@@ -54,7 +54,7 @@ PARTITION BY range(date)
 
 
 
-CREATE TABLE std.bills_head (
+CREATE TABLE std6_116.bills_head (
 	billnum int8,
 	plant bpchar(4),
 	calday date
@@ -76,7 +76,7 @@ PARTITION BY RANGE(calday)
 
 
 
-CREATE TABLE std.bills_item (
+CREATE TABLE std6_116.bills_item (
 	billnum int8,
 	billitem int8,
 	material int8,
@@ -103,7 +103,7 @@ PARTITION BY RANGE(calday)
 
 
 
-CREATE TABLE std.coupons (
+CREATE TABLE std6_116.coupons (
 	plant varchar
 	date date,
 	coupon_num varchar,
@@ -129,7 +129,7 @@ PARTITION BY RANGE(date)
 
 
 -- creating log table
-CREATE TABLE std.logs (
+CREATE TABLE std6_116.logs (
 	log_id int8 PRIMARY KEY,
 	log_timestamp timestamp DEFAULT now() NOT NULL,
 	log_type text NOT NULL,
