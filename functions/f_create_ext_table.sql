@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION std6_116.f_create_ext_table(p_source text, p_ext_protocol text, p_ip text, p_user text default null, p_pass text default null, p_schema_name text DEFAULT 'std6_116'::text)
+CREATE OR REPLACE FUNCTION std6_116.f_create_ext_table(p_source text, p_ext_protocol text, p_ip text, p_user text DEFAULT NULL::text, p_pass text DEFAULT NULL::text, p_schema_name text DEFAULT 'std6_116'::text)
 	RETURNS text
 	LANGUAGE plpgsql
 	SECURITY DEFINER
@@ -15,7 +15,7 @@ DECLARE
 	v_sql 				text;
 	v_conn_params 		text;
 	v_ext_protocol 		text;
-	v_table 		    text;
+	v_table 			text;
 BEGIN
 	v_ext_table = p_source || '_ext';
 	v_table := p_source;
@@ -59,13 +59,13 @@ BEGIN
 	-- creating external table
 	IF p_source = 'traffic' THEN
 		v_sql = 
-			'CREATE EXTERNAL TABLE std6_116.' || v_ext_table ||
+			'CREATE EXTERNAL TABLE ' || v_schema_name || '.' || v_ext_table ||
 			' (plant bpchar(4), date bpchar(10), time bpchar(6), frame_id bpchar(10), quantity int4)' || v_conn_params;
 		EXECUTE v_sql;
 	ELSE
 		v_sql = 
-			'CREATE EXTERNAL TABLE std6_116.' || v_ext_table ||
-			' (LIKE std6_116.' || v_table || ')' || v_conn_params;
+			'CREATE EXTERNAL TABLE ' || v_schema_name || '.'  || v_ext_table ||
+			' (LIKE ' || v_schema_name || '.'  || v_table || ')' || v_conn_params;
 		EXECUTE v_sql;
 	END IF;
 
