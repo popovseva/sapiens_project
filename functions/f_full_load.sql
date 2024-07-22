@@ -33,7 +33,7 @@ BEGIN
 	EXECUTE v_sql;
 
 	-- creating external table
-	v_ext_table = std6_116.f_create_ext_table3(p_source := v_table_to_name, p_ext_protocol := 'GPFDIST', p_ip := v_ip, p_schema_name := v_schema_name);
+	v_ext_table = std6_116.f_create_ext_table(p_source := v_table_to_name, p_ext_protocol := 'GPFDIST', p_ip := v_ip, p_schema_name := v_schema_name);
 
 	EXECUTE 'INSERT INTO '||p_table_to_name||' SELECT * FROM '||v_ext_table||''; 
 	GET DIAGNOSTICS v_cnt = ROW_COUNT;
