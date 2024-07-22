@@ -1,5 +1,3 @@
--- DROP FUNCTION std6_116.f_load_delta_partitions2(text, text, text, timestamp, timestamp, text, text, text, text);
-
 CREATE OR REPLACE FUNCTION std6_116.f_load_delta_partitions(p_table_to_name text, p_source text, p_partition_key text, p_start_date timestamp, p_end_date timestamp, ext_protocol text, p_ip text, p_user text DEFAULT NULL::text, p_pass text DEFAULT NULL::text)
 	RETURNS int8
 	LANGUAGE plpgsql
