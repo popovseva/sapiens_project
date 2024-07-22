@@ -2,6 +2,7 @@
 Fill some fields related to Greenplum connection: 
 your_greenplum_host:port, your_database, your_username, your_password
 */
+CREATE database std6_116;
 CREATE TABLE std6_116.ch_mart_proj_ext
 (
     `plant` String,
